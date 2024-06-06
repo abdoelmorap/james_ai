@@ -14,6 +14,7 @@ import 'package:james_ai/util/contsants.dart';
 import 'package:pie_menu/pie_menu.dart';
 import 'package:http/http.dart' as http;
 
+import '../../core/DataController.dart';
 import '../../core/models/EdenModel.dart';
 import '../../core/models/imageModel.dart';
 import '../../core/models/msgModel.dart';
@@ -54,15 +55,7 @@ class _ChatPageState extends State<ChatPage> {
 
    var card = cards.first;
     return
-    //   PieCanvas(theme:
-    //     const PieTheme(
-    //     delayDuration: Duration.zero,
-    //     buttonTheme:  PieButtonTheme(
-    //       backgroundColor: Colors.black,
-    //       iconColor: Colors.white,
-    //     ),tooltipTextStyle: TextStyle(color: Colors.transparent)
-    // ),
-    // child:
+
     Scaffold(
        appBar:ChatWidget.appBar(cards,card,context),
       body: Container(
@@ -75,7 +68,7 @@ class _ChatPageState extends State<ChatPage> {
               child:Container(margin:
               EdgeInsets.only(left: 15,right: 15),child: ChatWidget.buildListMessage(_wmessages,listScrollController,context),)),
             ChatWidget.chatContainer(textEditingController,(){
-              _handleSendPressed(textEditingController.text);
+              DataController.handleSendPressed(textEditingController.text,_wmessages,listScrollController,textEditingController, context);
             },(){
 
               showMenu=!showMenu;
@@ -119,7 +112,7 @@ setState(() {
               )),
               IconButton(onPressed: (){
 
-                _handleSendPressed(textEditingController.text);
+                DataController.handleSendPressed(textEditingController.text,_wmessages,listScrollController,textEditingController, context);
               }, icon:Icon(Icons.send,color: LightTheme.white,),style: ButtonStyle(
                 shape: MaterialStateProperty.all(CircleBorder()),
                 padding: MaterialStateProperty.all(EdgeInsets.all(5)),
@@ -139,47 +132,7 @@ setState(() {
     ));
   }
 
-  void _handleSendPressed( message)async {
 
-    textEditingController.text="";
-    setState(() {
-      _wmessages.add(msgModel(EdenAiModel(cohere:Cohere(status: "",generatedText: message) ), false,1))  ;    // _messages = messages;
-
-      listScrollController.animateTo(0.0,
-          duration: const Duration(milliseconds: 100), curve: Curves.easeOut); });
-
-
-
-
-
-
-    var urls = Uri.https('api.edenai.run', 'v2/text/generation');
-    var responsess = await http.post(urls,
-        body:    jsonEncode({
-          'providers': 'cohere',
-          'text': message,
-          'temperature':'0.2',
-          'max_tokens': '1500'
-        })
-        ,headers: {'accept':'application/json',
-          'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZGE5MTRiYTMtZWI4OS00NGU0LThiYjgtM2Q2MjlkZTBiMGFlIiwidHlwZSI6ImFwaV90b2tlbiJ9._CdWlh3jC9bbfqS6AgcF0P20xKfLcKUcTw_-0NrK52Q',
-          'content-type' :'application/json',
-        });
-
-
-
-    setState(() {
-      _wmessages.add(msgModel(EdenAiModel.fromJson(jsonDecode(responsess.body)), true,1))  ;    // _messages = messages;
-
-      listScrollController.animateTo(0.0,
-          duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
-    });
-
-
-
-
-
-  }
   void StartApp(){
     _wmessages.add(msgModel(EdenAiModel(cohere:Cohere(status: "",generatedText: "Provide statistics on the development of the Indonesian population") ), false,1))  ;    // _messages = messages;
     _wmessages.add(msgModel(EdenAiModel(cohere:Cohere(status: "",generatedText: "Well, here's the latest statistics data on Indonesia's Population ") ), true,1))  ;    // _messages = messages;
