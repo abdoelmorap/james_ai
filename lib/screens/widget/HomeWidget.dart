@@ -120,8 +120,7 @@ class HomeWidget{
 
 
   static Widget recentSearch(context,) {
-    return Container(child:
-        Expanded(child:   Column(children: [
+    return Container(child:  Column(children: [
         Container(child: Stack(
           children: [
             Align(child: Text("Recent Search",style: LightTheme.largePont.copyWith(fontSize: 16),),alignment: Alignment.centerLeft,)
@@ -129,9 +128,10 @@ class HomeWidget{
 
           ],
         ),margin: EdgeInsets.only(top: 20,left: 10,right: 20),),
-       Expanded(child:  ListView( children: DataCollector.arr,)),
+     ListView(physics: const NeverScrollableScrollPhysics()
+,         shrinkWrap: true,children: DataCollector.arr,)
 
-      ],),));
+      ],),);
 
   }
 }

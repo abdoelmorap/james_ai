@@ -42,7 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
         margin: EdgeInsets.fromLTRB(20, 5, 10, 5),
 
-        child: Center( child: Column(
+        child:
+        SingleChildScrollView(child:
+        Center( child: Column(
 
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,6 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),),),
     // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      ));
   }
 }
