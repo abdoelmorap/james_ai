@@ -46,7 +46,7 @@ class HomeWidget{
             Container(child:Text("Let's try it now",style: LightTheme.textStyle,)
               ,margin: EdgeInsets.only(left: 5),)
         ],),width: MediaQuery.of(context).size
-            .width/2.5,)
+            .width/2.4,)
       ],), ),
       Column(children: [
         Stack(children: [
@@ -61,7 +61,7 @@ class HomeWidget{
             ],), decoration: BoxDecoration(
 
             borderRadius: const BorderRadius.all(Radius.circular(20)),color: LightTheme.secColor,),width: MediaQuery.of(context).size
-              .width/2.3,height:MediaQuery.of(context).size.height <500?  MediaQuery.of(context).size.height/7:130),Positioned(child: Container(decoration: BoxDecoration(                color: LightTheme.redOvers,
+              .width/2.2,height:MediaQuery.of(context).size.height <500?  MediaQuery.of(context).size.height/7:130),Positioned(child: Container(decoration: BoxDecoration(                color: LightTheme.redOvers,
 
             borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),   padding: const EdgeInsets.fromLTRB(12, 2, 12, 2),child: Text("New",style: LightTheme.textStyle.copyWith(color: Colors.white),),),top: 8,right: 10,)
@@ -76,7 +76,7 @@ class HomeWidget{
         ],), decoration: BoxDecoration(
 
           borderRadius: const BorderRadius.all(Radius.circular(20)),color: LightTheme.backDark,),width: MediaQuery.of(context).size
-            .width/2.3,height:MediaQuery.of(context).size.height <500?  MediaQuery.of(context).size.height/7.5:120,)
+            .width/2.2,height:MediaQuery.of(context).size.height <500?  MediaQuery.of(context).size.height/7.5:120,)
       ],)
     ],);
   }

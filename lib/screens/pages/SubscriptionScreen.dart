@@ -39,7 +39,9 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
           Align(alignment: Alignment.topLeft,child: Container(child: Container(margin: const EdgeInsets.only(top: 45,left: 10),child: CircleButton(onPressed: (){
             Navigator.of(context).pop();
           },icon: const Icon(Icons.arrow_back_ios,size: 10
-            ,color: Colors.black,),),),),),Container( child: Column(children: [
+            ,color: Colors.black,),),),),),Container(margin: EdgeInsets.only(left: 10), child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
               SizedBox(height: MediaQuery.sizeOf(context).height/5,),
             Container(decoration:   BoxDecoration(               shape: BoxShape.circle,
               color: LightTheme.highWhite,

@@ -73,7 +73,7 @@ class _ChatPageState extends State<ChatPage> {
         child: Stack(children: [
           Column(children: [Flexible(
               child:Container(margin:
-              EdgeInsets.only(left: 10,right: 10),child: ChatWidget.buildListMessage(_wmessages,listScrollController,context),)),
+              EdgeInsets.only(left: 15,right: 15),child: ChatWidget.buildListMessage(_wmessages,listScrollController,context),)),
             ChatWidget.chatContainer(textEditingController,(){
               _handleSendPressed(textEditingController.text);
             },(){
